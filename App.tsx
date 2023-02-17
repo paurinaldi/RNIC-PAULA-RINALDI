@@ -5,33 +5,21 @@
  * @format
  */
 
-import React, {useEffect} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React from 'react';
+import {FlatList, SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import Card from './src/components/card';
+import {tasks} from './src/constants/tasks';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Title from './src/components/title';
+import TaskForm from './src/components/taskForm';
 
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
-
-function App(): JSX.Element {
+const App = (): JSX.Element => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    flex: 1,
   };
-
-  useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(err => {
-        console.error(err);
-      });
-  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -39,24 +27,16 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Button
-            title="Holi"
-            onPress={() => {
-              console.log('holis');
-            }}
-          />
-        </View>
-      </ScrollView>
+      <Title />
+      <FlatList
+        data={tasks}
+        renderItem={({item}) => (
+          <Card title={item.title} description={item.description} />
+        )}
+      />
+      <TaskForm />
     </SafeAreaView>
   );
-}
+};
 
 export default App;
