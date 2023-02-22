@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     borderTopColor: '#56746E',
     borderTopWidth: 0.5,
   },
+
   title: {
     fontSize: 20,
     fontWeight: '800',
@@ -13,6 +14,7 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
     color: '#56746E',
   },
+
   input: {
     fontSize: 18,
     backgroundColor: '#BECBC9',
@@ -21,12 +23,14 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 10,
   },
+
   button: {
     backgroundColor: '#EBDEF0',
     borderRadius: 50,
     marginHorizontal: 130,
     marginVertical: 20,
   },
+
   buttonText: {
     fontSize: 20,
     padding: 10,

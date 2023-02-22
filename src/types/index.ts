@@ -1,10 +1,18 @@
 export interface CardProps {
   title: string;
   description: string;
+  isCompleted: boolean;
 }
 
-export interface TasksProps {
+export interface Tasks extends CardProps {
   id: number;
-  title: string;
-  description: string;
+}
+
+export interface TaskFormProps {
+  data: Tasks[];
+  addData: (data: Tasks) => void;
+}
+
+export interface ListProps {
+  data: Tasks[];
 }

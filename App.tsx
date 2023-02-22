@@ -1,40 +1,46 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import {FlatList, SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import Card from './src/components/card';
+import React, {useEffect, useState} from 'react';
+import {AppState, Platform, SafeAreaView, StatusBar} from 'react-native';
 import {tasks} from './src/constants/tasks';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Title from './src/components/title';
 import TaskForm from './src/components/taskForm';
+import {Tasks} from './src/types';
+import {styles} from './styles';
+import List from './src/components/list';
 
 const App = (): JSX.Element => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isAndroid = Platform.OS === 'android';
+  const [cardsData, setCardsData] = useState(tasks);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1,
+  const addData = (data: Tasks) => {
+    let cardsArray = [...cardsData];
+    cardsArray.push(data);
+    setCardsData(cardsArray);
   };
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (nextAppState === 'background') {
+        setCardsData([]);
+      }
+    });
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  const backgroundStyle = isAndroid
+    ? styles.lighterBackground
+    : styles.darkerBackground;
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={isAndroid ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <Title />
-      <FlatList
-        data={tasks}
-        renderItem={({item}) => (
-          <Card title={item.title} description={item.description} />
-        )}
-      />
-      <TaskForm />
+      <List data={cardsData} />
+      <TaskForm addData={data => addData(data)} data={cardsData} />
     </SafeAreaView>
   );
 };
