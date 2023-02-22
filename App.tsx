@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {AppState, Platform, SafeAreaView, StatusBar} from 'react-native';
+import {
+  AppState,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native';
 import {tasks} from './src/constants/tasks';
 import Title from './src/components/title';
 import TaskForm from './src/components/taskForm';
@@ -33,15 +39,19 @@ const App = (): JSX.Element => {
     : styles.darkerBackground;
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isAndroid ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <Title />
-      <List data={cardsData} />
-      <TaskForm addData={data => addData(data)} data={cardsData} />
-    </SafeAreaView>
+    <KeyboardAvoidingView
+      style={backgroundStyle}
+      behavior={isAndroid ? undefined : 'padding'}>
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar
+          barStyle={isAndroid ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+        />
+        <Title />
+        <List data={cardsData} />
+        <TaskForm addData={data => addData(data)} data={cardsData} />
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 

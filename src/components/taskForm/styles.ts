@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#EBDEF0',
     borderRadius: 50,
     marginHorizontal: 130,
-    marginVertical: 20,
+    marginVertical: 30,
   },
 
   buttonText: {
