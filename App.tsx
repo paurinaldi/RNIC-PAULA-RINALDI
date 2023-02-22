@@ -14,8 +14,8 @@ import {styles} from './styles';
 import List from './src/components/list';
 
 const App = (): JSX.Element => {
-  const isAndroid = Platform.OS === 'android';
   const [cardsData, setCardsData] = useState(tasks);
+  const isAndroid = Platform.OS === 'android';
 
   const addData = (data: Tasks) => {
     let cardsArray = [...cardsData];
@@ -34,18 +34,14 @@ const App = (): JSX.Element => {
     };
   }, []);
 
-  const backgroundStyle = isAndroid
-    ? styles.lighterBackground
-    : styles.darkerBackground;
-
   return (
     <KeyboardAvoidingView
-      style={backgroundStyle}
+      style={styles.background}
       behavior={isAndroid ? undefined : 'padding'}>
-      <SafeAreaView style={backgroundStyle}>
+      <SafeAreaView style={styles.background}>
         <StatusBar
           barStyle={isAndroid ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
+          backgroundColor={styles.background.backgroundColor}
         />
         <Title />
         <List data={cardsData} />

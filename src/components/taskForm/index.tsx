@@ -21,7 +21,6 @@ const TaskForm = ({data, addData}: TaskFormProps) => {
   };
 
   const descriptionRef = useRef<TextInput>(null);
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>New task</Text>
