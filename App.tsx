@@ -1,62 +1,54 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-  Button,
+  AppState,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  useColorScheme,
-  View,
 } from 'react-native';
+import {tasks} from './src/constants/tasks';
+import Title from './src/components/title';
+import TaskForm from './src/components/taskForm';
+import {Tasks} from './src/types';
+import {styles} from './styles';
+import List from './src/components/list';
 
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+const App = (): JSX.Element => {
+  const [cardsData, setCardsData] = useState(tasks);
+  const isAndroid = Platform.OS === 'android';
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const addData = (data: Tasks) => {
+    let cardsArray = [...cardsData];
+    cardsArray.push(data);
+    setCardsData(cardsArray);
   };
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(err => {
-        console.error(err);
-      });
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (nextAppState === 'background') {
+        setCardsData([]);
+      }
+    });
+    return () => {
+      subscription.remove();
+    };
   }, []);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Button
-            title="Holi"
-            onPress={() => {
-              console.log('holis');
-            }}
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <KeyboardAvoidingView
+      style={styles.background}
+      behavior={isAndroid ? undefined : 'padding'}>
+      <SafeAreaView style={styles.background}>
+        <StatusBar
+          barStyle={isAndroid ? 'light-content' : 'dark-content'}
+          backgroundColor={styles.background.backgroundColor}
+        />
+        <Title />
+        <List data={cardsData} />
+        <TaskForm addData={data => addData(data)} data={cardsData} />
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
-}
+};
 
 export default App;
