@@ -12,6 +12,7 @@ import TaskForm from './src/components/taskForm';
 import {Tasks} from './src/types';
 import {styles} from './styles';
 import List from './src/components/list';
+import RNBootSplash from 'react-native-bootsplash';
 
 const App = (): JSX.Element => {
   const [cardsData, setCardsData] = useState(tasks);
@@ -24,6 +25,7 @@ const App = (): JSX.Element => {
   };
 
   useEffect(() => {
+    RNBootSplash.hide({fade: true});
     const subscription = AppState.addEventListener('change', nextAppState => {
       if (nextAppState === 'background') {
         setCardsData([]);

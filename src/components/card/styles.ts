@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     color: isAndroid ? '#7A7A7A' : '#000',
+    fontFamily: 'Lato-Regular',
   },
 
   status: {
