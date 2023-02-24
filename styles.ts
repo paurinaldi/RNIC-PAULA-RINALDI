@@ -1,11 +1,21 @@
-import {Platform, StyleSheet} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Platform} from 'react-native';
+import styled from 'styled-components/native';
+import {myTheme} from './src/constants/theme';
 
 const isAndroid = Platform.OS === 'android';
+const backgroundColor = ({theme}: {theme: typeof myTheme}) =>
+  isAndroid ? theme.colors.white : theme.colors.black;
 
-export const styles = StyleSheet.create({
-  background: {
-    backgroundColor: isAndroid ? Colors.lighter : Colors.darker,
-    flex: 1,
-  },
-});
+export const KeyboardAvoidingWrapper = styled.KeyboardAvoidingView`
+  flex: 1;
+  background-color: ${backgroundColor};
+`;
+
+export const ViewWrapper = styled.SafeAreaView`
+  flex: 1;
+  background-color: ${backgroundColor};
+`;
+
+export const CustomStatusBar = styled.StatusBar`
+  background-color: ${backgroundColor};
+`;

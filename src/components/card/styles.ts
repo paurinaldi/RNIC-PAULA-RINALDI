@@ -1,32 +1,51 @@
-import {Platform, StyleSheet} from 'react-native';
+import {Platform} from 'react-native';
+import styled from 'styled-components/native';
+import TickIcon from '../../assets/icons/tick';
+
 const isAndroid = Platform.OS === 'android';
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: isAndroid ? '#EBDEF0' : '#7A7A7A',
-    borderRadius: 35,
-    marginHorizontal: 20,
-    marginVertical: 10,
-  },
+export const Container = styled.View`
+  padding: 15px;
+  background-color: ${({theme}) =>
+    isAndroid ? theme.colors.pink : theme.colors.greyishPink};
+  border-radius: 35px;
+  margin: 10px 20px;
+`;
 
-  title: {
-    fontSize: 20,
-    fontWeight: '800',
-    marginBottom: 5,
-  },
+export const Title = styled.Text`
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: ${({theme}) => theme.colors.darkerGreen};
+`;
 
-  text: {
-    fontSize: 15,
-    color: isAndroid ? '#7A7A7A' : '#000',
-    fontFamily: 'Lato-Regular',
-  },
+export const Description = styled.Text`
+  font-size: 15px;
+  color: ${({theme}) =>
+    isAndroid ? theme.colors.darkerGrey : theme.colors.black};
+  font-family: 'Lato-Regular';
+  padding-bottom: 10px;
+`;
 
-  status: {
-    margin: 10,
-    alignSelf: 'flex-end',
-    fontWeight: '600',
-    color: '#88B478',
-  },
-});
+export const CardStatus = styled(TickIcon)`
+  margin: 10px 10px 0px 10px;
+  align-self: flex-end;
+  height: 24px;
+  width: 24px;
+`;
+
+export const IconsContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0px 10px;
+`;
+
+export const CardImage = styled.Image`
+  width: 250px;
+  height: 150px;
+  align-self: center;
+  border-radius: 30;
+`;
