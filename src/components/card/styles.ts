@@ -47,5 +47,5 @@ export const CardImage = styled.Image`
   width: 250px;
   height: 150px;
   align-self: center;
-  border-radius: 30;
+  border-radius: 30px;
 `;

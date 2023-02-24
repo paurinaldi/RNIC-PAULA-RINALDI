@@ -7,7 +7,7 @@ export const tasks: Tasks[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat, turpis et accumsan placerat,erat est faucibus risus, vel efficitur est nisi ac ligula.Curabitur egestas eros vitae eleifend eleifend.Nullam pretium et leo quis tristique.',
     isCompleted: false,
-    img: 'https://beebom.com/wp-content/uploads/2022/10/Chainsaw-Man-Who-is-Pochita-All-You-Need-to-Know.jpg',
+    img: require('../assets/images/pochita.jpg'),
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const tasks: Tasks[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat, turpis et accumsan placerat,erat est faucibus risus, vel efficitur est nisi ac ligula.Curabitur egestas eros vitae eleifend eleifend.Nullam pretium et leo quis tristique.',
     isCompleted: true,
-    img: 'https://static.wikia.nocookie.net/naruto/images/6/64/Sakura_Part_1.png/revision/latest/scale-to-width-down/300?cb=20170726101444',
+    img: require('../assets/images/sakura.jpeg'),
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const tasks: Tasks[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat, turpis et accumsan placerat,erat est faucibus risus, vel efficitur est nisi ac ligula.Curabitur egestas eros vitae eleifend eleifend.Nullam pretium et leo quis tristique.',
 
     isCompleted: true,
-    img: 'https://external-preview.redd.it/Zk1HlIpZBqwS12RN2thnjugV9YIT5qHS0fZkV0KSOpg.jpg?auto=webp&s=ccb8dc56acae73088238e5a7d1704ddce943641d',
+    img: require('../assets/images/shinji.jpg'),
   },
 
   {

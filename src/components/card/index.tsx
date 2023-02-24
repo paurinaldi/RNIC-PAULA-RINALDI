@@ -31,14 +31,7 @@ const Card = ({data, editData}: CardProps) => {
         </IconsContainer>
         <Title> {data.title} </Title>
         <Description> {data.description} </Description>
-        {data.img && (
-          <CardImage
-            source={{
-              uri: data.img,
-            }}
-            resizeMethod="resize"
-          />
-        )}
+        {data.img && <CardImage source={data.img} resizeMethod="resize" />}
         {data.isCompleted && <CardStatus />}
       </Container>
     </TouchableOpacity>
