@@ -1,26 +1,24 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
-import {ListProps} from '../../types';
+import {FlatList} from 'react-native';
+import {Tasks} from '../../types';
 import Card from '../card';
-import {styles} from './styles';
+import {Container, EmptyList} from './styles';
 
-const List = ({data}: ListProps) => {
+export interface ListProps {
+  data: Tasks[];
+  editData: (data: Tasks) => void;
+}
+
+const List = ({data, editData}: ListProps) => {
+  const emptyListMsg = <EmptyList>No tasks submited yet</EmptyList>;
   return (
-    <View style={styles.container}>
+    <Container>
       <FlatList
         data={data}
-        renderItem={({item}) => (
-          <Card
-            isCompleted={item.isCompleted}
-            title={item.title}
-            description={item.description}
-          />
-        )}
+        ListEmptyComponent={emptyListMsg}
+        renderItem={({item}) => <Card editData={editData} data={item} />}
       />
-      {!data.length && (
-        <Text style={styles.noCardsMsg}>No tasks submited yet</Text>
-      )}
-    </View>
+    </Container>
   );
 };
 

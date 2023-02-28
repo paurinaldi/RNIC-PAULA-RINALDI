@@ -1,41 +1,48 @@
-import {StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
+import TickIcon from '../../assets/icons/tick';
 
-export const styles = StyleSheet.create({
-  container: {
-    opacity: 10,
-    borderTopColor: '#56746E',
-    borderTopWidth: 0.5,
-  },
+export const Container = styled.View`
+  opacity: 10;
+  border: 0.5px solid ${({theme}) => theme.colors.greyishGreen};
+`;
 
-  title: {
-    fontSize: 20,
-    fontWeight: '800',
-    textAlign: 'center',
-    paddingTop: 10,
-    color: '#56746E',
-  },
+export const Title = styled.Text`
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  padding-top: 10px;
+  color: ${({theme}) => theme.colors.greyishGreen};
+`;
 
-  input: {
-    fontSize: 18,
-    backgroundColor: '#BECBC9',
-    borderRadius: 20,
-    paddingHorizontal: 20,
-    marginHorizontal: 20,
-    marginVertical: 10,
-  },
+export const Input = styled.TextInput`
+  font-size: 18px;
+  background-color: ${({theme}) => theme.colors.grey};
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 10px 20px;
+`;
 
-  button: {
-    backgroundColor: '#EBDEF0',
-    borderRadius: 50,
-    marginHorizontal: 130,
-    marginVertical: 30,
-  },
+export const ButtonWrapper = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({theme}) => theme.colors.pink};
+  border-radius: 50px;
+  margin: 30px 130px;
+  height: 60px;
+  width: 150px;
+`;
 
-  buttonText: {
-    fontSize: 20,
-    padding: 10,
-    fontWeight: '600',
-    textAlign: 'center',
-    color: '#56746E',
-  },
-});
+export const ButtonLabel = styled.Text`
+  font-size: 20px;
+  padding: 10px;
+  font-weight: 600;
+  text-align: center;
+  color: ${({theme}) => theme.colors.greyishGreen};
+`;
+
+export const SubmitIcon = styled(TickIcon)`
+  height: 24px;
+  width: 24px;
+`;

@@ -1,10 +1,8 @@
-import {StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
 
-export const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    fontWeight: '800',
-    textAlign: 'center',
-    color: '#56746E',
-  },
-});
+export const TitleText = styled.Text`
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center;
+  color: ${({theme}) => theme.colors.greyishGreen};
+`;

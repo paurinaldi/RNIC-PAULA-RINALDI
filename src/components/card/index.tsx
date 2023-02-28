@@ -1,18 +1,39 @@
-import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {CardProps} from '../../types';
-import {styles} from './styles';
+import React from 'react';
+import {TouchableHighlight, TouchableOpacity} from 'react-native';
+import CloseIcon from '../../assets/icons/close';
+import EditIcon from '../../assets/icons/edit';
+import {Tasks} from '../../types';
+import {
+  Container,
+  Title,
+  Description,
+  CardStatus,
+  IconsContainer,
+  CardImage,
+} from './styles';
 
-const Card = ({title, description, isCompleted}: CardProps) => {
-  const [taskCompleted, setTaskCompleted] = useState(false);
-  isCompleted = taskCompleted;
+export interface CardProps {
+  editData: (data: Tasks) => void;
+  data: Tasks;
+}
+
+const Card = ({data, editData}: CardProps) => {
   return (
-    <TouchableOpacity onPress={() => setTaskCompleted(!taskCompleted)}>
-      <View style={styles.container}>
-        <Text style={styles.title}> {title} </Text>
-        <Text style={styles.text}> {description} </Text>
-        {isCompleted && <Text style={styles.status}>✔</Text>}
-      </View>
+    <TouchableOpacity onPress={() => editData(data)}>
+      <Container>
+        <IconsContainer>
+          <TouchableHighlight>
+            <EditIcon />
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <CloseIcon />
+          </TouchableHighlight>
+        </IconsContainer>
+        <Title> {data.title} </Title>
+        <Description> {data.description} </Description>
+        {data.img && <CardImage source={data.img} resizeMethod="resize" />}
+        {data.isCompleted && <CardStatus />}
+      </Container>
     </TouchableOpacity>
   );
 };

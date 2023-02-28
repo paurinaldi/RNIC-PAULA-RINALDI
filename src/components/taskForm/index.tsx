@@ -1,7 +1,19 @@
 import React, {useRef, useState} from 'react';
-import {View, TextInput, Text, TouchableOpacity, Keyboard} from 'react-native';
-import {TaskFormProps} from '../../types';
-import {styles} from './styles';
+import {TextInput, Keyboard} from 'react-native';
+import {Tasks} from '../../types';
+import {
+  ButtonLabel,
+  ButtonWrapper,
+  Container,
+  Input,
+  SubmitIcon,
+  Title,
+} from './styles';
+
+export interface TaskFormProps {
+  data: Tasks[];
+  addData: (data: Tasks) => void;
+}
 
 const TaskForm = ({data, addData}: TaskFormProps) => {
   const [title, setTitle] = useState('');
@@ -22,12 +34,11 @@ const TaskForm = ({data, addData}: TaskFormProps) => {
 
   const descriptionRef = useRef<TextInput>(null);
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>New task</Text>
-      <TextInput
+    <Container>
+      <Title>New task</Title>
+      <Input
         value={title}
         onChangeText={value => setTitle(value)}
-        style={styles.input}
         placeholder="Title"
         returnKeyType="next"
         onSubmitEditing={() => {
@@ -35,17 +46,17 @@ const TaskForm = ({data, addData}: TaskFormProps) => {
         }}
         blurOnSubmit={false}
       />
-      <TextInput
+      <Input
         value={description}
         onChangeText={value => setDescription(value)}
-        style={styles.input}
         placeholder="Description"
         ref={descriptionRef}
       />
-      <TouchableOpacity onPress={() => onSubmit()} style={styles.button}>
-        <Text style={styles.buttonText}>Submit</Text>
-      </TouchableOpacity>
-    </View>
+      <ButtonWrapper onPress={() => onSubmit()}>
+        <ButtonLabel>Submit</ButtonLabel>
+        <SubmitIcon />
+      </ButtonWrapper>
+    </Container>
   );
 };
 

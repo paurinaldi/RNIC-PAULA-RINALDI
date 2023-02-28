@@ -7,6 +7,7 @@ export const tasks: Tasks[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat, turpis et accumsan placerat,erat est faucibus risus, vel efficitur est nisi ac ligula.Curabitur egestas eros vitae eleifend eleifend.Nullam pretium et leo quis tristique.',
     isCompleted: false,
+    img: require('../assets/images/pochita.jpg'),
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const tasks: Tasks[] = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat, turpis et accumsan placerat,erat est faucibus risus, vel efficitur est nisi ac ligula.Curabitur egestas eros vitae eleifend eleifend.Nullam pretium et leo quis tristique.',
     isCompleted: true,
+    img: require('../assets/images/sakura.jpeg'),
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const tasks: Tasks[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consequat, turpis et accumsan placerat,erat est faucibus risus, vel efficitur est nisi ac ligula.Curabitur egestas eros vitae eleifend eleifend.Nullam pretium et leo quis tristique.',
 
     isCompleted: true,
+    img: require('../assets/images/shinji.jpg'),
   },
 
   {
