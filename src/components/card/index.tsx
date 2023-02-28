@@ -1,38 +1,37 @@
 import React from 'react';
-import {TouchableHighlight, TouchableOpacity} from 'react-native';
-import CloseIcon from '../../assets/icons/close';
-import EditIcon from '../../assets/icons/edit';
-import {Tasks} from '../../types';
+import {TouchableOpacity} from 'react-native';
+import {Routes} from '../../types/enums/routes';
+import {Tasks} from '../../types/interfaces/tasks';
 import {
   Container,
   Title,
   Description,
-  CardStatus,
-  IconsContainer,
   CardImage,
+  TaskCompleted,
+  TaskIncomplete,
 } from './styles';
 
 export interface CardProps {
-  editData: (data: Tasks) => void;
+  taskCompleted: (data: Tasks) => void;
   data: Tasks;
+  navigation: any;
 }
 
-const Card = ({data, editData}: CardProps) => {
+const Card = ({data, taskCompleted, navigation}: CardProps) => {
   return (
-    <TouchableOpacity onPress={() => editData(data)}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate(Routes.EDIT_TASK, {
+          id: data.id,
+        });
+      }}>
       <Container>
-        <IconsContainer>
-          <TouchableHighlight>
-            <EditIcon />
-          </TouchableHighlight>
-          <TouchableHighlight>
-            <CloseIcon />
-          </TouchableHighlight>
-        </IconsContainer>
         <Title> {data.title} </Title>
         <Description> {data.description} </Description>
         {data.img && <CardImage source={data.img} resizeMethod="resize" />}
-        {data.isCompleted && <CardStatus />}
+        <TouchableOpacity onPress={() => taskCompleted(data)}>
+          {data.isCompleted ? <TaskCompleted /> : <TaskIncomplete />}
+        </TouchableOpacity>
       </Container>
     </TouchableOpacity>
   );

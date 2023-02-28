@@ -3,5 +3,6 @@ export interface Tasks {
   description: string;
   isCompleted: boolean;
   id: number;
-  img?: string;
+  img?: number;
+  date?: Date | undefined;
 }

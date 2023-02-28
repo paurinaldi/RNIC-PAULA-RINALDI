@@ -1,5 +1,6 @@
 import {Platform} from 'react-native';
 import styled from 'styled-components/native';
+import CircleIcon from '../../assets/icons/circle';
 import TickIcon from '../../assets/icons/tick';
 
 const isAndroid = Platform.OS === 'android';
@@ -27,21 +28,28 @@ export const Description = styled.Text`
   padding-bottom: 10px;
 `;
 
-export const CardStatus = styled(TickIcon)`
+export const TaskCompleted = styled(TickIcon)`
   margin: 10px 10px 0px 10px;
   align-self: flex-end;
   height: 24px;
   width: 24px;
 `;
 
-export const IconsContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 0px 10px;
+export const TaskIncomplete = styled(CircleIcon)`
+  margin: 10px 10px 0px 10px;
+  align-self: flex-end;
+  height: 24px;
+  width: 24px;
 `;
+
+// export const IconsContainer = styled.View`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: flex-end;
+//   gap: 10px;
+//   padding: 0px 10px;
+// `;
 
 export const CardImage = styled.Image`
   width: 250px;
