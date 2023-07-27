@@ -1,4 +1,4 @@
-import {Tasks} from '../types';
+import {Tasks} from '../types/interfaces/tasks';
 
 export const tasks: Tasks[] = [
   {
